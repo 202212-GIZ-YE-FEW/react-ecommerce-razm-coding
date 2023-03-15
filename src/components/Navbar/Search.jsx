@@ -40,7 +40,7 @@ export default function Search({ setProducts }) {
 				<input
 					type="search"
 					placeholder="Search ..."
-					className="block py-4 px-10 pl-10 text-sm border border-gray-300 rounded-lg bg-slate-700 focus:border-red-400"
+					className="block py-4 px-10 pl-10 text-sm outline-none rounded-lg bg-slate-700"
 					value={searchInput}
 					onChange={handleInput}
 				/>
