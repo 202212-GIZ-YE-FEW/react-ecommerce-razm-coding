@@ -1,5 +1,6 @@
 import Layout from '@/components/Layout'
 import Products from '@/components/products/Products';
+import Search from './Search';
 
 export const getStaticProps = async () => {
   const res = await fetch("https://fakestoreapi.com/products");
@@ -14,6 +15,7 @@ export default function Home({ products }) {
         {products.map(product => (
           <Products product={product} key={product.id} ></Products>
         ))}
+        <Search products={products}/>
       </div>
     </Layout>
   )

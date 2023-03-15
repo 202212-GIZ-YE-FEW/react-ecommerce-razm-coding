@@ -1,28 +1,22 @@
 import React, { useState } from "react";
+import SearchPage from "./SearchEngPage/SearchPage";
 
-function Search({ products }) {
+export default function Search({ products }) {
   const [searchInput, setSearchInput] = useState("");
 
+  console.log(products)
   function handleInput(event) {
     setSearchInput(event.target.value);
   }
 
   function handleSearch() {
-    for (const element of products) {
-      if (element.title == searchInput) {
-        <div>
-          {products.map((product) => {
-            return (
-              <div key={product.id}>
-                <img src={product.image} alt={product.title} />
-                <h1>{product.title}</h1>
-                <Link href={`/item/${product.id}`}>View Product</Link>
-              </div>
-            );
-          })}
-        </div>;
+    products.filter((product)=>{
+      if (searchInput == product.title) {
+        return <SearchPage product={product} key={product.id} />;
+      } else {
+        return <h1>Not Found</h1>;
       }
-    }
+    })
   }
 
   return (
@@ -46,7 +40,7 @@ function Search({ products }) {
       </div>
       <input
         type="text"
-        placeholder="Search....."
+        placeholder="Search...."
         className="block w-full p-4 pl-10 text-sm text-gray-900 border border-gray-300 rounded-lg bg-slate-700 focus:border-red-400"
         value={searchInput}
         onChange={handleInput}
@@ -60,15 +54,3 @@ function Search({ products }) {
     </div>
   );
 }
-
-export default Search;
-
-export const getStaticProps = async () => {
-  const res = await fetch("https://fakestoreapi.com/products");
-  const data = await res.json();
-  return {
-    props: {
-      products: data,
-    },
-  };
-};

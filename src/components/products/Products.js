@@ -1,12 +1,5 @@
 import Link from 'next/link';
 
-
-export const getStaticProps = async () => {
-  const res = await fetch("https://fakestoreapi.com/products");
-  const data = await res.json();
-  return { props: { products: data } };
-};
-
 export default function Products({ product }) {
   return (
     <div className='card flex flex-col justify-between'>
