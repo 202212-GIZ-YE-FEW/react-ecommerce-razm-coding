@@ -39,7 +39,7 @@ export default function ProductPage({ product }) {
             <br />
             <li className='font-bold'>Rating:<span className='px-5'>{product.rating.rate}</span></li>
             <br />
-            <li><span className='font-bold'>Description <br /></span> {product.description}</li>
+            <li><span className='font-bold'>Description <br /></span> {product.description}</li><br />
           </ul>
         </div>
         <div>

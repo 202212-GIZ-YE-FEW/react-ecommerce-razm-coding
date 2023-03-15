@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 
-function Search({ products }) {
+export default function Search({ products }) {
   const [searchInput, setSearchInput] = useState("");
 
   function handleInput(event) {
@@ -46,8 +46,8 @@ function Search({ products }) {
       </div>
       <input
         type="text"
-        placeholder="Search....."
-        className="block w-full p-4 pl-10 text-sm text-gray-900 border border-gray-300 rounded-lg bg-slate-700 focus:border-red-400"
+        placeholder="Search ....."
+        className="block py-4 px-10 pl-10 text-sm text-gray-900 border border-gray-300 rounded-lg bg-slate-700 focus:border-red-400"
         value={searchInput}
         onChange={handleInput}
       />
@@ -60,8 +60,6 @@ function Search({ products }) {
     </div>
   );
 }
-
-export default Search;
 
 export const getStaticProps = async () => {
   const res = await fetch("https://fakestoreapi.com/products");
