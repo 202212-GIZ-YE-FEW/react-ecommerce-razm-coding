@@ -1,7 +1,7 @@
+import Link from "next/link";
 import React from "react";
 
 function Products({ products }) {
-  console.log(products);
   return (
     <div>
       {products.map((product) => {
@@ -9,10 +9,11 @@ function Products({ products }) {
           <div key={product.id}>
             <img src={product.image} alt={product.title} />
             <h1>{product.title}</h1>
+            <Link href={`/item/${product.id}`}>View Product</Link>
           </div>
         );
       })}
-    </div>
+    </div> 
   );
 }
 export default Products;
