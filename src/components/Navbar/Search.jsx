@@ -1,5 +1,4 @@
 import React, { useState } from 'react';
-import Products from '@/components/products/Products';
 
 export default function Search({ setProducts }) {
 	const [searchInput, setSearchInput] = useState('');
