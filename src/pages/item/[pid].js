@@ -21,25 +21,25 @@ export const getStaticProps = async ({ params }) => {
 export default function ProductPage({ product }) {
   return (
     <Layout title={product.title}>
-      <div className='grid md:grid-cols-4 md:gap-3'>
+      <div className='grid md:grid-cols-4 md:gap-3 items-center lg:pr-4'>
         <div className='md:col-span-2'>
           <img
+            className='lg:max-h-[38vw] lg:w-[45vw]'
             src={product.image}
             alt={product.title}
-            width={720}
-            height={720}
-            layout="responsive"
           />
         </div>
         <div>
-          <ul>
+          <ul className='text-center'>
             <li>
-              <h1 className='text-lg'>{product.title}</h1>
+              <h1 className='text-xl font-bold'><span className='underline'>Title<br /></span>{product.title}</h1>
             </li>
-            <li>Category: {product.title}</li>
-            <li>Brand: {product.brand}</li>
-            <li>{product.rating.rate} of {product.numReviews} reviews</li>
-            <li>Description: {product.description}</li>
+            <br />
+            <li><span className='font-bold'>Category <br /></span> {product.title}</li>
+            <br />
+            <li className='font-bold'>Rating:<span className='px-5'>{product.rating.rate}</span></li>
+            <br />
+            <li><span className='font-bold'>Description <br /></span> {product.description}</li>
           </ul>
         </div>
         <div>
@@ -51,12 +51,12 @@ export default function ProductPage({ product }) {
             <div className='mp-2 flex justify-between'>
               <div>Status: </div>
               <div>{product.rating.count > 0 ? `${product.rating.count} Still in Stock` : 'Unavalible'}</div>
-            </div>
-            <button className='primary-button w-full'>Add to cart</button>
+            </div><br />
+            <Link href='' className='primary-button block'>Add to cart</Link>
           </div>
+          <Link href="/" className='primary-button block text-center'>Go Back</Link>
         </div>
       </div>
-      <Link href="/">Go Back</Link>
     </Layout>
   );
 }
