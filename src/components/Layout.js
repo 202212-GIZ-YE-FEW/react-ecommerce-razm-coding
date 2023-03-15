@@ -1,6 +1,6 @@
 import Head from 'next/head'
 import React from 'react'
-// import Navbar from './navbar'
+import Navbar from './Navbar'
 
 export default function Layout({ title, children }) {
   return (
@@ -14,7 +14,7 @@ export default function Layout({ title, children }) {
 
       <div className='min-h-screen flex flex-col justify-between bg-zinc-900 text-slate-200'>
         <header>
-          {/* <Navbar /> */}
+          <Navbar />
         </header>
         <main className='my-10'>
           {children}
