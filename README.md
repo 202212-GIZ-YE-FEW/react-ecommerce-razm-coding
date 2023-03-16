@@ -41,3 +41,7 @@ This website represent the products of fakestoreapi these products can be add to
 also the products can be represent by categories and we can search for products
 
 # A screenshot of the website.
+Home page
+![alt](/Images/Home%20Page.png)
+
+![alt](/Images/Own%20Page.png)
