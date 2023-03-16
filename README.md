@@ -2,7 +2,7 @@
 Razm E-Commerce
 
 # Overview
-This project made by Razm coding team and it took from us about 3 days 
+This project made by Razm coding team and it took from us about 2 days 
 
 # Team Project members:
 Abobakr Mahdi
