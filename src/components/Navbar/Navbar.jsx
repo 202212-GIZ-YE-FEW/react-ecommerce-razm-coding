@@ -6,7 +6,7 @@ import Filter from './Filter';
 
 const routes = [
 	{ name: "Home", path: '/' },
-	{ name: 'Cart', path: '/cart' },
+	{ name: 'Cart', path: '/Cart/cart' },
 	{ name: 'Login', path: '/login' },
 ];
 
@@ -25,7 +25,7 @@ export default function Navbar({ setProducts }) {
 					))}
 				</div>
 				<div>
-					<Filter setProducts={setProducts}/>
+					<Filter setProducts={setProducts} />
 				</div>
 				<div>
 					<Search setProducts={setProducts} />

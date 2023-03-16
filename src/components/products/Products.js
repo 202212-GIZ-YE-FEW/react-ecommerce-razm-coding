@@ -1,4 +1,7 @@
 import Link from 'next/link';
+import { useRouter } from 'next/router';
+import { useContext } from 'react';
+import { Store } from '../Store';
 
 
 export const getStaticProps = async () => {
@@ -8,6 +11,17 @@ export const getStaticProps = async () => {
 };
 
 export default function Products({ product }) {
+  const { state, dispatch } = useContext(Store);
+  const router = useRouter();
+  const addToCartHandler = () => {
+    const existItem = state.cart.cartItems.find((x) => x.id === product.id)
+    const quantity = existItem ? existItem.quantity + 1 : 1;
+    if (product.rating.count < quantity) {
+      alert('Out of stock')
+    } else
+      dispatch({ type: 'CART_ADD_ITEM', payload: { ...product, quantity: quantity } })
+    router.push('/Cart/cart')
+  };
   return (
     <div className='card flex flex-col justify-between mt-[6vw]'>
       <Link href={`/item/${product.id}`}>
@@ -24,7 +38,7 @@ export default function Products({ product }) {
         <p>{product.category}</p>
         <p> ${product.price}</p>
       </div>
-      <button className='primary-button' type='button'>Add To Cart</button>
+      <button className='primary-button' type='button' onClick={addToCartHandler}>Add To Cart</button>
     </div>
   );
 }
