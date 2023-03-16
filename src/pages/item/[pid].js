@@ -6,25 +6,23 @@ import React from "react";
 export const getStaticPaths = async () => {
   const res = await fetch("https://fakestoreapi.com/products");
   const products = await res.json();
-  const paths = products.map((product) => {
-    return { params: { pid: String(product.id) } }
-  });
+  const paths = products.map((product) => ({ params: { pid: String(product.id) } }));
   return { paths, fallback: false, };
 };
 
 export const getStaticProps = async ({ params }) => {
   const res = await fetch("https://fakestoreapi.com/products/" + params.pid);
   const data = await res.json();
-  return { props: { product: data, } }
+  return { props: { product: data } }
 };
 
 export default function ProductPage({ product }) {
   return (
     <Layout title={product.title}>
-      <div className='grid md:grid-cols-4 md:gap-3 items-center lg:pr-4'>
-        <div className='md:col-span-2'>
+      <div className='grid lg:grid-cols-3 lg:gap-3 items-center lg:pr-4 lg:mt-[3vw] md:mt-[4.5vw] sm:mt-[7vw]'>
+        <div className='md:col-spa'>
           <img
-            className='lg:max-h-[38vw] lg:w-[45vw]'
+            className='lg:max-h-[33vw] lg:w-[45vw] md:max-h-[38vw]'
             src={product.image}
             alt={product.title}
           />
@@ -52,7 +50,7 @@ export default function ProductPage({ product }) {
               <div>Status: </div>
               <div>{product.rating.count > 0 ? `${product.rating.count} Still in Stock` : 'Unavalible'}</div>
             </div><br />
-            <Link href='' className='primary-button block'>Add to cart</Link>
+            <button className='primary-button w-full'>Add to cart</button>
           </div>
           <Link href="/" className='primary-button block text-center'>Go Back</Link>
         </div>

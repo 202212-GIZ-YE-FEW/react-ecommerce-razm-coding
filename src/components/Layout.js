@@ -13,7 +13,7 @@ export default function Layout({ title, setProducts, children }) {
 			</Head>
 
 			<div className="min-h-screen flex flex-col justify-between bg-zinc-900 text-slate-200">
-				<header>
+				<header className="fixed w-full z-10">
 					<Navbar setProducts={setProducts} />
 				</header>
 				<main className="my-10">{children}</main>
