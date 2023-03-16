@@ -3,8 +3,8 @@ import Link from 'next/link';
 import React, { useContext } from 'react';
 import { XCircleIcon } from '@heroicons/react/outline';
 import { useRouter } from 'next/router';
-import Layout from '@/components/Layout';
 import { Store } from '@/components/Store';
+import Layout from '@/components/Layout';
 
 export default function CartScreen() {
   const router = useRouter();
@@ -15,16 +15,12 @@ export default function CartScreen() {
   const removeItemHandler = (item) => {
     dispatch({ type: 'CART_REMOVE_ITEM', payload: item });
   };
-  const updateCartHandler = (item, qty) => {
-    const quantity = Number(qty);
-    dispatch({ type: 'CART_ADD_ITEM', payload: { ...item, quantity } });
-  };
   return (
     <Layout title="Shopping Cart">
       <h1 className="mb-4 text-xl">Shopping Cart</h1>
       {cartItems.length === 0 ? (
         <div>
-          Cart is empty. <Link href="/">Go shopping</Link>
+          Cart is empty. <Link href="/" className='primary-button'>Go shopping</Link>
         </div>
       ) : (
         <div className="grid md:grid-cols-4 md:gap-5">
@@ -53,20 +49,7 @@ export default function CartScreen() {
                         {item.name}
                       </Link>
                     </td>
-                    <td className="p-5 text-right">
-                      <select
-                        value={item.quantity}
-                        onChange={(e) =>
-                          updateCartHandler(item, e.target.value)
-                        }
-                      >
-                        {[...Array(item.countInStock).keys()].map((x) => (
-                          <option key={x + 1} value={x + 1}>
-                            {x + 1}
-                          </option>
-                        ))}
-                      </select>
-                    </td>
+                    <td className="p-5 text-right">{item.quantity}</td>
                     <td className="p-5 text-right">${item.price}</td>
                     <td className="p-5 text-center">
                       <button onClick={() => removeItemHandler(item)}>
@@ -93,6 +76,9 @@ export default function CartScreen() {
                 >
                   Check Out
                 </button>
+              </li>
+              <li className='mt-3'>
+                <Link href="/" className='primary-button'>Book another Product</Link>
               </li>
             </ul>
           </div>

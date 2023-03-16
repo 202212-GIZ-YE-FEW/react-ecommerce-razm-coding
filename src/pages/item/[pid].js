@@ -1,8 +1,6 @@
 import Layout from '@/components/Layout';
-import { Store } from '@/components/Store';
 import Link from 'next/link';
-import { useRouter } from 'next/router';
-import React, { useContext } from "react";
+import React from "react";
 
 
 export const getStaticPaths = async () => {
@@ -19,21 +17,6 @@ export const getStaticProps = async ({ params }) => {
 };
 
 export default function ProductPage({ product }) {
-  const { state, dispatch } = useContext(Store);
-  const { query } = useRouter();
-  const { id } = query;
-  const Product = product.find((product) => product.id.toString() === id);
-  if (!Product) {
-    return <div>Product Not Found</div>
-  }
-  const addToCartHandler = () => {
-    const existItem = state.cart.cartItems.find((x) => x.id === Product.id)
-    const quantity = existItem ? existItem.quantity + 1 : 1;
-    if (Product.rating.count < quantity) {
-      alert('Out of stock')
-    } else
-      dispatch({ type: 'CART_ADD_ITEM', payload: { ...Product, quantity: quantity } })
-  };
   return (
     <Layout title={product.title}>
       <div className='grid lg:grid-cols-3 lg:gap-3 items-center lg:pr-4 lg:mt-[3vw] md:mt-[4.5vw] sm:mt-[7vw]'>
@@ -67,7 +50,7 @@ export default function ProductPage({ product }) {
               <div>Status: </div>
               <div>{product.rating.count > 0 ? `${product.rating.count} Still in Stock` : 'Unavalible'}</div>
             </div><br />
-            <button className='primary-button w-full' onClick={addToCartHandler}>Add to cart</button>
+            <button className='primary-button w-full'>Add to cart</button>
           </div>
           <Link href="/" className='primary-button block text-center'>Go Back</Link>
         </div>

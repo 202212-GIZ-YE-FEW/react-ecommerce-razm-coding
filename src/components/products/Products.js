@@ -12,7 +12,6 @@ export const getStaticProps = async () => {
 
 export default function Products({ product }) {
   const { state, dispatch } = useContext(Store);
-  const router = useRouter();
   const addToCartHandler = () => {
     const existItem = state.cart.cartItems.find((x) => x.id === product.id)
     const quantity = existItem ? existItem.quantity + 1 : 1;
@@ -20,7 +19,6 @@ export default function Products({ product }) {
       alert('Out of stock')
     } else
       dispatch({ type: 'CART_ADD_ITEM', payload: { ...product, quantity: quantity } })
-    router.push('/Cart/cart')
   };
   return (
     <div className='card flex flex-col justify-between mt-[6vw]'>
