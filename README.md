@@ -26,6 +26,8 @@ Fatima Gubari
     ├─ pages/
     │  ├─ api/
     |     ├─ hello.js
+    ├─ Cart/
+    |     ├─ cart.js
     ├─ item/
     │  ├─ [pid].js
     ├─ _app.jss
