@@ -2,6 +2,7 @@ import Search from './Search';
 import Link from 'next/link';
 import React from 'react';
 import Nav from './Nav';
+import Filter from './Filter';
 
 const routes = [
 	{ name: "Home", path: '/' },
@@ -22,6 +23,9 @@ export default function Navbar({ setProducts }) {
 							<Nav name={name} />
 						</Link>
 					))}
+				</div>
+				<div>
+					<Filter setProducts={setProducts}/>
 				</div>
 				<div>
 					<Search setProducts={setProducts} />
