@@ -44,4 +44,8 @@ also the products can be represent by categories and we can search for products
 Home page
 ![alt](/Images/Home%20Page.png)
 
+Product page
 ![alt](/Images/Own%20Page.png)
+
+Cart page
+![alt](/Images/Cart%20Page.png)
