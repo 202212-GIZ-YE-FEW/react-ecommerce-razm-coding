@@ -9,13 +9,11 @@ export const getStaticProps = async () => {
 
 export default function Products({ product }) {
   return (
-    <div className='card flex flex-col justify-between'>
+    <div className='card flex flex-col justify-between mt-[6vw]'>
       <Link href={`/item/${product.id}`}>
         <img
           src={product.image}
           alt={product.title}
-          width={720}
-          height={720}
           className="rounded shadow-lg h-[50vw] lg:h-[15vw] md:h-[15vw] sm:h-[50vw] w-[100%]"
         />
       </Link>

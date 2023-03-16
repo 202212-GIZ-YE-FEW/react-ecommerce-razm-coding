@@ -7,12 +7,16 @@ export default function Search({ setProducts }) {
 		setSearchInput(event.target.value);
 	}
 
+	function capitalizeFirstLetter(string) {
+		return string.charAt(0).toUpperCase() + string.slice(1);
+	}
+
 	async function handleSearch(e) {
 		e.preventDefault();
 		const res = await fetch('https://fakestoreapi.com/products');
 		const data = await res.json();
 		const products = data.filter(({ title }) => {
-			return title.includes(searchInput);
+			return title.includes(capitalizeFirstLetter(searchInput));
 		});
 		setProducts(products);
 	}
