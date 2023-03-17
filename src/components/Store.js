@@ -9,14 +9,40 @@ function reducer(state, action) {
   switch (action.type) {
     case 'CART_ADD_ITEM': {
       const newItem = action.payload;
-      const existItem = state.cart.cartItems.find(
+      const existItemIndex = state.cart.cartItems.findIndex(
         (item) => item.slug === newItem.slug
       );
-      const cartItems = existItem
-        ? state.cart.cartItems.map((item) =>
-          item.name === existItem.name ? newItem : item
-        )
-        : [...state.cart.cartItems, newItem];
+      let newCartItems;
+      if (existItemIndex !== -1) {
+        const existItem = state.cart.cartItems[existItemIndex];
+        const newQuantity = existItem.quantity + newItem.quantity;
+        newCartItems = [...state.cart.cartItems];
+        newCartItems.splice(existItemIndex, 1, { ...existItem, quantity: newQuantity });
+      } else {
+        newCartItems = [...state.cart.cartItems, newItem];
+      }
+      return { ...state, cart: { ...state.cart, cartItems: newCartItems } };
+    }
+    case 'CART_REMOVE_ITEM': {
+      const itemToRemove = action.payload;
+      const updatedCartItems = state.cart.cartItems.filter(
+        (item) => item.slug !== itemToRemove.slug
+      );
+      return { ...state, cart: { ...state.cart, cartItems: updatedCartItems } };
+    }
+    case 'CART_REMOVE_ONE_ITEM': {
+      const itemToRemove = action.payload;
+      const cartItems = state.cart.cartItems.map((item) => {
+        if (item.slug === itemToRemove.slug) {
+          if (item.quantity > 1) {
+            return { ...item, quantity: item.quantity - 1 };
+          } else {
+            return null;
+          }
+        } else {
+          return item;
+        }
+      }).filter((item) => item !== null);
       return { ...state, cart: { ...state.cart, cartItems } };
     }
     default:

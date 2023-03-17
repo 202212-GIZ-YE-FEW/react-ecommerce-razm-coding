@@ -13,7 +13,7 @@ export default function CartScreen() {
     cart: { cartItems },
   } = state;
   const removeItemHandler = (item) => {
-    dispatch({ type: 'CART_REMOVE_ITEM', payload: item });
+    dispatch({ type: 'CART_REMOVE_ONE_ITEM', payload: item });
   };
   return (
     <Layout title="Shopping Cart">
